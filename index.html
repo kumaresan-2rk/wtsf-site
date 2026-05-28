@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Traditional Silambattam Federation</title>
+  <meta name="description" content="World Traditional Silambattam Association Tamil Nadu, India - LEARN | SECURE | TEACH">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/images/favicon.svg">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.svg" alt="WTSF Logo">
+        <span>WTSF</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+      <nav class="nav" id="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="instructors.html">Instructors</a>
+        <a href="events.html">Events</a>
+        <a href="classes.html">Classes</a>
+        <a href="contacts.html">Contact</a>
+      </nav>
+      <div class="nav-overlay" id="navOverlay"></div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <section class="hero">
+      <div class="hero-content">
+        <img class="logo-main" src="assets/images/logo.svg" alt="WTSF" onerror="this.style.display='none'">
+        <p class="tagline">LEARN | SECURE | TEACH</p>
+        <h1>World Traditional<br>Silambattam Federation</h1>
+        <p>Preserving and promoting the ancient Tamil martial art of Silambattam across India and the world.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>About Our Federation</h2>
+        </div>
+        <div style="max-width:800px;margin:0 auto;text-align:center;color:var(--text-secondary);">
+          <p>The World Traditional Silambattam Federation (WTSF) is dedicated to the preservation, practice, and promotion of Silambattam — the ancient Tamil martial art. With affiliated instructors across Tamil Nadu, we provide authentic training in traditional Silambattam techniques, weapons forms, and associated disciplines.</p>
+          <p>Our mission is to ensure this rich cultural heritage is passed down to future generations through structured training programs, certifications, and public demonstrations.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Instructors</h2>
+        </div>
+        <div class="card-grid card-grid-3" id="homeInstructors"></div>
+        <div class="text-center mt-2">
+          <a href="instructors.html" class="btn">View All Instructors</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Upcoming Events</h2>
+        </div>
+        <div class="blog-grid" id="homeEvents"></div>
+        <div class="text-center mt-2">
+          <a href="events.html" class="btn">View All Events</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>World Traditional Silambattam Federation</h4>
+          <p>Dedicated to preserving and promoting the ancient Tamil martial art of Silambattam.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">F</a>
+            <a href="#" aria-label="Instagram">I</a>
+            <a href="#" aria-label="Twitter">X</a>
+            <a href="#" aria-label="YouTube">Y</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="about.html">About Us</a><br>
+          <a href="instructors.html">Instructors</a><br>
+          <a href="blog.html">Blog</a><br>
+          <a href="events.html">Events</a>
+        </div>
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <a href="classes.html">Classes</a><br>
+          <a href="instructors.html">Training</a><br>
+          <a href="blog.html">Workshops</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="contacts.html">Get in Touch</a><br>
+          <p>Tamil Nadu, India</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 World Traditional Silambattam Federation. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    fetch('data/instructors.json')
+      .then(r => r.json())
+      .then(data => {
+        const container = document.getElementById('homeInstructors');
+        if (!container) return;
+        const featured = data.slice(0, 3);
+        container.innerHTML = featured.map(i => `
+          <a href="instructors/${i.id}.html" class="card" style="text-decoration:none;color:inherit;">
+            <img class="card-image" src="${i.photo}" alt="${i.name}" loading="lazy" onerror="this.src='assets/images/placeholder.svg'">
+            <div class="card-body">
+              <div class="card-title">${i.name}</div>
+              <div class="card-subtitle">${i.district}, ${i.state}</div>
+              <div class="card-text">${i.specialization}</div>
+            </div>
+          </a>
+        `).join('');
+      });
+
+    fetch('data/blog.json')
+      .then(r => r.json())
+      .then(data => {
+        const container = document.getElementById('homeEvents');
+        if (!container) return;
+        const events = data.filter(p => p.category === 'Events').slice(0, 3);
+        container.innerHTML = events.map(e => {
+          const date = new Date(e.date).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+          return `<div class="blog-card" onclick="window.location='blog.html'">
+            <img class="blog-card-image" src="${e.coverImage}" alt="${e.title}" loading="lazy" onerror="this.style.display='none'">
+            <div class="blog-card-body">
+              <div class="blog-card-date">${date}</div>
+              <div class="blog-card-category">${e.category}</div>
+              <div class="card-title">${e.title}</div>
+            </div>
+          </div>`;
+        }).join('');
+      });
+  </script>
+</body>
+</html>

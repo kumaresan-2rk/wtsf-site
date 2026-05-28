@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — WTSF</title>
+  <meta name="description" content="Contact the World Traditional Silambattam Federation">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/images/favicon.svg">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.svg" alt="WTSF Logo">
+        <span>WTSF</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+      <nav class="nav" id="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="instructors.html">Instructors</a>
+        <a href="events.html">Events</a>
+        <a href="classes.html">Classes</a>
+        <a href="contacts.html">Contact</a>
+      </nav>
+      <div class="nav-overlay" id="navOverlay"></div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contact Us</h2>
+          <p style="color:var(--text-secondary);margin-top:0.5rem;">Get in touch with WTSF</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:900px;margin:0 auto;">
+          <div>
+            <h3 style="margin-bottom:1.5rem;">Send a Message</h3>
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Your name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Your email" required>
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" placeholder="Subject">
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" placeholder="Your message..." required></textarea>
+              </div>
+              <button type="submit" class="btn">Send Message</button>
+            </form>
+            <div id="formStatus" style="margin-top:1rem;color:var(--accent);font-size:0.9rem;display:none;"></div>
+          </div>
+
+          <div>
+            <h3 style="margin-bottom:1.5rem;">Contact Information</h3>
+            <div style="margin-bottom:1.5rem;">
+              <h4 style="color:var(--accent);margin-bottom:0.25rem;">Location</h4>
+              <p style="color:var(--text-secondary);">Tamil Nadu, India</p>
+            </div>
+            <div style="margin-bottom:1.5rem;">
+              <h4 style="color:var(--accent);margin-bottom:0.25rem;">Email</h4>
+              <p style="color:var(--text-secondary);">info@wtsfsilambam.com</p>
+            </div>
+            <div style="margin-bottom:1.5rem;">
+              <h4 style="color:var(--accent);margin-bottom:0.25rem;">Follow Us</h4>
+              <p style="color:var(--text-secondary);">Stay connected on social media</p>
+              <div class="footer-social" style="justify-content:flex-start;">
+                <a href="#" aria-label="Facebook">F</a>
+                <a href="#" aria-label="Instagram">I</a>
+                <a href="#" aria-label="Twitter">X</a>
+                <a href="#" aria-label="YouTube">Y</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>World Traditional Silambattam Federation</h4>
+          <p>Dedicated to preserving and promoting the ancient Tamil martial art of Silambattam.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="index.html">Home</a><br>
+          <a href="about.html">About</a><br>
+          <a href="instructors.html">Instructors</a>
+        </div>
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <a href="blog.html">Blog</a><br>
+          <a href="events.html">Events</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="contacts.html">Get in Touch</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 World Traditional Silambattam Federation. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const status = document.getElementById('formStatus');
+      status.textContent = 'Thank you for your message. We will get back to you soon.';
+      status.style.display = 'block';
+      this.reset();
+    });
+  </script>
+</body>
+</html>

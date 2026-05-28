@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instructors — WTSF</title>
+  <meta name="description" content="WTSF Silambattam instructors directory by state and district">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/images/favicon.svg">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.svg" alt="WTSF Logo">
+        <span>WTSF</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
+      <nav class="nav" id="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="blog.html">Blog</a>
+        <a href="instructors.html">Instructors</a>
+        <a href="events.html">Events</a>
+        <a href="classes.html">Classes</a>
+        <a href="contacts.html">Contact</a>
+      </nav>
+      <div class="nav-overlay" id="navOverlay"></div>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <section class="section">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Instructors</h2>
+          <p style="color:var(--text-secondary);margin-top:0.5rem;">Find certified Silambattam instructors by state and district</p>
+        </div>
+
+        <div class="filter-bar">
+          <select id="filterState">
+            <option value="">All States</option>
+          </select>
+          <select id="filterDistrict" disabled>
+            <option value="">All Districts</option>
+          </select>
+          <input type="text" id="filterSearch" placeholder="Search by name or specialization...">
+          <div class="view-toggle">
+            <button data-view="gallery" class="active" title="Gallery view">▦</button>
+            <button data-view="list" title="List view">☰</button>
+            <button data-view="carousel" title="Carousel view">≋</button>
+          </div>
+        </div>
+
+        <div id="instructorGrid" data-view="gallery"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>World Traditional Silambattam Federation</h4>
+          <p>Dedicated to preserving and promoting the ancient Tamil martial art of Silambattam.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="index.html">Home</a><br>
+          <a href="about.html">About</a><br>
+          <a href="blog.html">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <a href="classes.html">Classes</a><br>
+          <a href="events.html">Events</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="contacts.html">Get in Touch</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 World Traditional Silambattam Federation. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/instructors.js"></script>
+</body>
+</html>
