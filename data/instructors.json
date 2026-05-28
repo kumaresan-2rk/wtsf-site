@@ -1,0 +1,97 @@
+[
+  {
+    "id": "cbe-001",
+    "fullId": "WTSF-D-CBE-2026-001",
+    "name": "Guru Kumaresan",
+    "state": "Tamil Nadu",
+    "district": "Coimbatore",
+    "photo": "assets/instructors/cbe-001.jpg",
+    "specialization": "Silambattam",
+    "experience": 25,
+    "bio": "Guru Kumaresan is a master of Silambattam with over 25 years of experience. He has trained hundreds of students across Tamil Nadu and is dedicated to preserving the traditional martial art form.",
+    "social": {
+      "instagram": "https://instagram.com/",
+      "youtube": "https://youtube.com/"
+    }
+  },
+  {
+    "id": "cbe-002",
+    "fullId": "WTSF-D-CBE-2026-002",
+    "name": "Guru Selvam",
+    "state": "Tamil Nadu",
+    "district": "Coimbatore",
+    "photo": "assets/instructors/cbe-002.jpg",
+    "specialization": "Kalaripayattu",
+    "experience": 18,
+    "bio": "Guru Selvam specializes in Kalaripayattu and has been teaching for 18 years. He is known for his expertise in weapon-based martial arts training.",
+    "social": {
+      "instagram": "https://instagram.com/"
+    }
+  },
+  {
+    "id": "tup-001",
+    "fullId": "WTSF-D-TUP-2026-001",
+    "name": "Guru Rajan",
+    "state": "Tamil Nadu",
+    "district": "Tirupur",
+    "photo": "assets/instructors/tup-001.jpg",
+    "specialization": "Silambattam",
+    "experience": 30,
+    "bio": "Guru Rajan is a senior instructor with 30 years of experience in Silambattam. He has conducted workshops across India and internationally.",
+    "social": {
+      "youtube": "https://youtube.com/"
+    }
+  },
+  {
+    "id": "che-001",
+    "fullId": "WTSF-D-CHE-2026-001",
+    "name": "Guru Priya",
+    "state": "Tamil Nadu",
+    "district": "Chennai",
+    "photo": "assets/instructors/che-001.jpg",
+    "specialization": "Silambattam",
+    "experience": 12,
+    "bio": "Guru Priya is one of the leading female Silambattam instructors in Chennai. She specializes in training women and children in traditional martial arts.",
+    "social": {
+      "instagram": "https://instagram.com/"
+    }
+  },
+  {
+    "id": "mad-001",
+    "fullId": "WTSF-D-MAD-2026-001",
+    "name": "Guru Muthu",
+    "state": "Tamil Nadu",
+    "district": "Madurai",
+    "photo": "assets/instructors/mad-001.jpg",
+    "specialization": "Silambattam",
+    "experience": 20,
+    "bio": "Guru Muthu has been practicing Silambattam for 20 years and specializes in advanced weapon forms including surul kambu and sedikuchi.",
+    "social": {}
+  },
+  {
+    "id": "tly-001",
+    "fullId": "WTSF-D-TLY-2026-001",
+    "name": "Guru Vasanth",
+    "state": "Tamil Nadu",
+    "district": "Thoothukudi",
+    "photo": "assets/instructors/tly-001.jpg",
+    "specialization": "Kalaripayattu",
+    "experience": 15,
+    "bio": "Guru Vasanth is a dedicated Kalaripayattu instructor from Thoothukudi. He has trained numerous students in traditional combat techniques.",
+    "social": {}
+  },
+  {
+    "id": "blr-001",
+    "fullId": "WTSF-D-BLR-2026-001",
+    "name": "Guru Suresh",
+    "state": "Karnataka",
+    "district": "Bangalore",
+    "photo": "assets/instructors/blr-001.jpg",
+    "specialization": "Silambattam",
+    "experience": 10,
+    "bio": "Guru Suresh is spreading Silambattam in Karnataka. He conducts regular workshops and training programs in Bangalore.",
+    "social": {
+      "instagram": "https://instagram.com/"
+    }
+  }
+]
