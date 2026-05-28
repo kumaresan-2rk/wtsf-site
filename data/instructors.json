@@ -81,17 +81,123 @@
     "social": {}
   },
   {
-    "id": "blr-001",
-    "fullId": "WTSF-D-BLR-2026-001",
-    "name": "Guru Suresh",
-    "state": "Karnataka",
-    "district": "Bangalore",
-    "photo": "assets/instructors/blr-001.jpg",
+    "id": "sal-001",
+    "fullId": "WTSF-D-SAL-2026-001",
+    "name": "Guru Baskaran",
+    "state": "Tamil Nadu",
+    "district": "Salem",
+    "photo": "assets/instructors/sal-001.jpg",
     "specialization": "Silambattam",
-    "experience": 10,
-    "bio": "Guru Suresh is spreading Silambattam in Karnataka. He conducts regular workshops and training programs in Bangalore.",
-    "social": {
-      "instagram": "https://instagram.com/"
-    }
+    "experience": 14,
+    "bio": "Guru Baskaran has been teaching Silambattam in Salem for 14 years. He is known for his expertise in traditional stick fighting techniques and has trained many state-level competitors.",
+    "social": {}
+  },
+  {
+    "id": "ten-001",
+    "fullId": "WTSF-D-TEN-2026-001",
+    "name": "Guru Murugan",
+    "state": "Tamil Nadu",
+    "district": "Tenkasi",
+    "photo": "assets/instructors/ten-001.jpg",
+    "specialization": "Silambattam",
+    "experience": 22,
+    "bio": "Guru Murugan is a senior Silambattam instructor from Tenkasi with 22 years of experience. He specializes in traditional forms and weapon-based combat techniques.",
+    "social": {}
+  },
+  {
+    "id": "vir-001",
+    "fullId": "WTSF-D-VIR-2026-001",
+    "name": "Guru Pandian",
+    "state": "Tamil Nadu",
+    "district": "Viruthunagar",
+    "photo": "assets/instructors/vir-001.jpg",
+    "specialization": "Kalaripayattu",
+    "experience": 16,
+    "bio": "Guru Pandian is a Kalaripayattu instructor based in Viruthunagar with 16 years of teaching experience. He is dedicated to preserving traditional combat arts in southern Tamil Nadu.",
+    "social": {}
+  },
+  {
+    "id": "thv-001",
+    "fullId": "WTSF-D-THV-2026-001",
+    "name": "Guru Devaraj",
+    "state": "Tamil Nadu",
+    "district": "Thiruvallur",
+    "photo": "assets/instructors/thv-001.jpg",
+    "specialization": "Silambattam",
+    "experience": 11,
+    "bio": "Guru Devaraj has been practicing and teaching Silambattam in Thiruvallur for 11 years. He conducts regular training sessions and has produced several district-level champions.",
+    "social": {}
+  },
+  {
+    "id": "atp-001",
+    "fullId": "WTSF-D-ATP-2026-001",
+    "name": "Guru Srinivas",
+    "state": "Andhra Pradesh",
+    "district": "Tirupati",
+    "photo": "assets/instructors/atp-001.jpg",
+    "specialization": "Silambattam",
+    "experience": 9,
+    "bio": "Guru Srinivas is spreading Silambattam in Andhra Pradesh from Tirupati. He has been training students for 9 years and regularly organizes workshops across the region.",
+    "social": {}
+  },
+  {
+    "id": "amd-001",
+    "fullId": "WTSF-D-AMD-2026-001",
+    "name": "Guru Harsh",
+    "state": "Gujarat",
+    "district": "Ahmedabad",
+    "photo": "assets/instructors/amd-001.jpg",
+    "specialization": "Silambattam",
+    "experience": 8,
+    "bio": "Guru Harsh is a dedicated Silambattam instructor based in Ahmedabad, Gujarat. With 8 years of experience, he is introducing this traditional Tamil martial art to students in western India.",
+    "social": {}
+  },
+  {
+    "id": "lko-001",
+    "fullId": "WTSF-D-LKO-2026-001",
+    "name": "Guru Vikram",
+    "state": "Uttar Pradesh",
+    "district": "Lucknow",
+    "photo": "assets/instructors/lko-001.jpg",
+    "specialization": "Silambattam",
+    "experience": 7,
+    "bio": "Guru Vikram has been teaching Silambattam in Lucknow, Uttar Pradesh for 7 years. He is passionate about promoting South Indian martial arts in northern India.",
+    "social": {}
+  },
+  {
+    "id": "bbi-001",
+    "fullId": "WTSF-D-BBI-2026-001",
+    "name": "Guru Prakash",
+    "state": "Odisha",
+    "district": "Bhubaneswar",
+    "photo": "assets/instructors/bbi-001.jpg",
+    "specialization": "Silambattam",
+    "experience": 6,
+    "bio": "Guru Prakash is based in Bhubaneswar, Odisha and has been teaching Silambattam for 6 years. He conducts regular training camps and demonstrations across the state.",
+    "social": {}
+  },
+  {
+    "id": "bom-001",
+    "fullId": "WTSF-D-BOM-2026-001",
+    "name": "Guru Aniket",
+    "state": "Maharashtra",
+    "district": "Mumbai",
+    "photo": "assets/instructors/bom-001.jpg",
+    "specialization": "Silambattam",
+    "experience": 8,
+    "bio": "Guru Aniket is a Silambattam instructor from Mumbai, Maharashtra with 8 years of experience. He has trained numerous students in the Mumbai metropolitan region.",
+    "social": {}
+  },
+  {
+    "id": "mys-001",
+    "fullId": "WTSF-D-MYS-2026-001",
+    "name": "Guru Ramesh",
+    "state": "Karnataka",
+    "district": "Mysore",
+    "photo": "assets/instructors/mys-001.jpg",
+    "specialization": "Kalaripayattu",
+    "experience": 13,
+    "bio": "Guru Ramesh is a Kalaripayattu instructor based in Mysore, Karnataka with 13 years of experience. He is known for his expertise in weapon-based martial arts and has trained students across Karnataka.",
+    "social": {}
   }
 ]

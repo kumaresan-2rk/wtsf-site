@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog — WTSF</title>
-  <meta name="description" content="WTSF Silambattam blog - news, events, training updates">
+  <title>Gallery — WTSF</title>
+  <meta name="description" content="WTSF Silambattam photo gallery - events, training, and activities">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="assets/images/favicon.svg">
 </head>
@@ -34,19 +34,19 @@
     <section class="section">
       <div class="container">
         <div class="section-title">
-          <h2>Blog</h2>
-          <p style="color:var(--text-secondary);margin-top:0.5rem;">News, events, and updates from WTSF</p>
+          <h2>Gallery</h2>
+          <p style="color:var(--text-secondary);margin-top:0.5rem;">Photos from our events, training sessions, and federation activities</p>
         </div>
-
-        <div class="category-filters" id="categoryFilters"></div>
-
-        <div class="blog-grid" id="blogGrid"></div>
+        <div class="card-grid card-grid-3" id="galleryGrid"></div>
       </div>
     </section>
   </main>
 
-  <div class="modal-overlay" id="modalOverlay">
-    <div class="modal-content" id="modalBody"></div>
+  <div class="modal-overlay" id="modalOverlay" onclick="this.classList.remove('open');document.body.style.overflow=''">
+    <div class="modal-content" style="text-align:center;background:transparent;box-shadow:none;max-width:90vw;">
+      <button class="modal-close" onclick="document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow=''" style="color:#fff;font-size:2rem;">&times;</button>
+      <img id="modalImg" src="" alt="" style="max-height:80vh;width:auto;margin:0 auto;border-radius:var(--radius);">
+    </div>
   </div>
 
   <footer class="site-footer">
@@ -79,6 +79,33 @@
   </footer>
 
   <script src="js/main.js"></script>
-  <script src="js/blog.js"></script>
+  <script>
+    var images = [
+      "assets/uploads/aboutus/12766.jpg",
+      "assets/uploads/aboutus/22787.jpg",
+      "assets/uploads/aboutus/28849.jpg",
+      "assets/uploads/aboutus/29805.jpg",
+      "assets/uploads/aboutus/35062.jpg",
+      "assets/uploads/aboutus/52401.jpg",
+      "assets/uploads/aboutus/57284.png",
+      "assets/uploads/aboutus/75207.jpg",
+      "assets/uploads/aboutus/81878.jpg",
+      "assets/uploads/aboutus/88523.png",
+      "assets/uploads/aboutus/91139.jpg"
+    ];
+
+    var grid = document.getElementById('galleryGrid');
+    grid.innerHTML = images.map(function(src) {
+      return '<div class="card" style="cursor:pointer;" onclick="openGallery(\'' + src + '\')">' +
+        '<img class="card-image" src="' + src + '" alt="Gallery photo" loading="lazy" style="aspect-ratio:4/3;">' +
+      '</div>';
+    }).join('');
+
+    function openGallery(src) {
+      document.getElementById('modalImg').src = src;
+      document.getElementById('modalOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  </script>
 </body>
 </html>

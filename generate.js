@@ -52,8 +52,9 @@ function buildProfileHtml(i) {
       <nav class="nav" id="nav">
         <a href="../index.html">Home</a>
         <a href="../about.html">About</a>
-        <a href="../blog.html">Blog</a>
-        <a href="../instructors.html">Instructors</a>
+        <a href=\"../blog.html\">Blog</a>
+        <a href=\"../gallery.html\">Gallery</a>
+        <a href=\"../instructors.html\">Instructors</a>
         <a href="../events.html">Events</a>
         <a href="../classes.html">Classes</a>
         <a href="../contacts.html">Contact</a>
