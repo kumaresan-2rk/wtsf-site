@@ -86,7 +86,7 @@ function buildProfileHtml(i) {
   </header>
 
   <main class="page-content">
-    <section class="section">
+    ${i.banner ? `<div class="profile-banner"><img src="../${escapeHtml(i.banner)}" alt="${escapeHtml(i.name)}"></div>\n    ` : ''}<section class="section">
       <div class="container">
         <a href="../instructors.html" style="color:var(--text-secondary);display:inline-block;margin-bottom:2rem;">&larr; Back to Instructors</a>
         <div class="profile-header">
