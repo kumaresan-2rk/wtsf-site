@@ -778,43 +778,75 @@ p { margin-bottom: 1rem; }
 }
 
 /* Profile Page */
-.profile-header {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.profile-photo {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: var(--radius-lg);
-  border: 3px solid var(--border);
-}
-
-.profile-info h1 { margin-bottom: 0.5rem; }
-
-.profile-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.profile-meta-item {
+.back-link {
+  display: inline-block;
   background: var(--bg-input);
-  padding: 0.4rem 0.8rem;
+  padding: 6px 14px;
   border-radius: var(--radius);
   font-size: 0.85rem;
   color: var(--text-secondary);
+  margin-bottom: 1rem;
+  transition: background var(--transition);
+}
+.back-link:hover { background: var(--border); }
+
+.profile-banner {
+  width: 100%;
+  max-height: 350px;
+  overflow: hidden;
+}
+.profile-banner img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  display: block;
 }
 
-.profile-meta-item strong { color: var(--accent); }
+.profile-under {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin-top: -75px;
+  margin-bottom: 1.5rem;
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--bg);
+  flex-shrink: 0;
+}
+
+.profile-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding-bottom: 8px;
+}
+
+.profile-name {
+  font-size: 1.5rem;
+  white-space: nowrap;
+}
+
+.tag {
+  background: var(--bg-input);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.tag strong { color: var(--accent); }
 
 .profile-bio {
   color: var(--text-secondary);
   line-height: 1.8;
+  max-width: 800px;
 }
 
 .profile-social {
@@ -834,23 +866,12 @@ p { margin-bottom: 1rem; }
 
 .profile-social a:hover { color: var(--accent); }
 
-.profile-banner {
-  width: 100%;
-  max-height: 350px;
-  overflow: hidden;
-  margin-bottom: 0;
-}
-.profile-banner img {
-  width: 100%;
-  height: 350px;
-  object-fit: cover;
-  display: block;
-}
-
 @media (max-width: 768px) {
   .profile-banner img { height: 200px; }
-  .profile-header { grid-template-columns: 1fr; }
-  .profile-photo { max-width: 250px; }
+  .profile-photo { width: 120px; height: 120px; }
+  .profile-under { margin-top: -60px; gap: 1rem; }
+  .profile-name { font-size: 1.2rem; }
+  .tag { font-size: 0.8rem; padding: 0.25rem 0.6rem; }
 }
 
 /* Leadership */

@@ -44,7 +44,6 @@ function calcExperience(i) {
 }
 
 function buildProfileHtml(i) {
-  const experience = calcExperience(i);
   const socialHtml = [];
   if (i.social && i.social.instagram) {
     socialHtml.push(`<a href="${escapeHtml(i.social.instagram)}" target="_blank" rel="noopener">Instagram</a>`);
@@ -52,6 +51,9 @@ function buildProfileHtml(i) {
   if (i.social && i.social.youtube) {
     socialHtml.push(`<a href="${escapeHtml(i.social.youtube)}" target="_blank" rel="noopener">YouTube</a>`);
   }
+  const bannerSrc = i.banner
+    ? `../${escapeHtml(i.banner)}`
+    : '../assets/uploads/logo/22434.png';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -86,23 +88,20 @@ function buildProfileHtml(i) {
   </header>
 
   <main class="page-content">
-    ${i.banner ? `<div class="profile-banner"><img src="../${escapeHtml(i.banner)}" alt="${escapeHtml(i.name)}"></div>\n    ` : ''}<section class="section">
+    <section class="section">
       <div class="container">
-        <a href="../instructors.html" style="color:var(--text-secondary);display:inline-block;margin-bottom:2rem;">&larr; Back to Instructors</a>
-        <div class="profile-header">
+        <a href="../instructors.html" class="back-link">&larr; Back to Instructors</a>
+        <div class="profile-banner"><img src="${bannerSrc}" alt="${escapeHtml(i.name)}"></div>
+        <div class="profile-under">
           <img class="profile-photo" src="../${escapeHtml(i.photo)}" alt="${escapeHtml(i.name)}" onerror="this.src='../assets/images/placeholder.svg'">
-          <div class="profile-info">
-            <h1>${escapeHtml(i.name)}</h1>
-            <div class="profile-meta">
-              <span class="profile-meta-item"><strong>${escapeHtml(i.district)}</strong>, ${escapeHtml(i.state)}</span>
-              <span class="profile-meta-item">${escapeHtml(i.specialization)}</span>
-              <span class="profile-meta-item">${experience} years experience</span>
-              ${i.fullId ? `<span class="profile-meta-item">ID: ${escapeHtml(i.fullId)}</span>` : ''}
-            </div>
-            <div class="profile-bio">${escapeHtml(i.bio || '')}</div>
-            ${socialHtml.length > 0 ? '<div class="profile-social">' + socialHtml.join('') + '</div>' : ''}
+          <div class="profile-head">
+            <h1 class="profile-name">${escapeHtml(i.name)}</h1>
+            <span class="tag"><strong>${escapeHtml(i.district)}</strong>, ${escapeHtml(i.state)}</span>
+            <span class="tag">${escapeHtml(i.specialization)}</span>
           </div>
         </div>
+        <div class="profile-bio">${escapeHtml(i.bio || '')}</div>
+        ${socialHtml.length > 0 ? '<div class="profile-social">' + socialHtml.join('') + '</div>' : ''}
       </div>
     </section>
   </main>
