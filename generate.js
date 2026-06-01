@@ -51,9 +51,14 @@ function buildProfileHtml(i) {
   if (i.social && i.social.youtube) {
     socialHtml.push(`<a href="${escapeHtml(i.social.youtube)}" target="_blank" rel="noopener">YouTube</a>`);
   }
+  const isDefaultBanner = !i.banner;
   const bannerSrc = i.banner
     ? `../${escapeHtml(i.banner)}`
-    : '../assets/uploads/logo/22434.png';
+    : '../assets/uploads/logo/default-profile-banner.png';
+  
+  const bannerStyle = isDefaultBanner 
+    ? 'object-fit: contain; background: #1a1a1a; padding: 2rem;' 
+    : '';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -70,15 +75,14 @@ function buildProfileHtml(i) {
     <div class="container header-inner">
       <a href="../index.html" class="logo">
         <img src="../assets/uploads/logo/22434.png" alt="WTSF Logo">
-        <span>WTSF</span>
       </a>
       <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
       <nav class="nav" id="nav">
         <a href="../index.html">Home</a>
         <a href="../about.html">About</a>
-        <a href=\"../blog.html\">Blog</a>
-        <a href=\"../gallery.html\">Gallery</a>
-        <a href=\"../instructors.html\">Instructors</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../gallery.html">Gallery</a>
+        <a href="../instructors.html">Instructors</a>
         <a href="../events.html">Events</a>
         <a href="../classes.html">Classes</a>
         <a href="../contacts.html">Contact</a>
@@ -88,10 +92,12 @@ function buildProfileHtml(i) {
   </header>
 
   <main class="page-content">
-    <section class="section">
+    <section class="section profile-section-full" style="position: relative;">
+      <div class="profile-banner"><img src="${bannerSrc}" alt="${escapeHtml(i.name)}" style="${bannerStyle}"></div>
+      <div class="container" style="position: absolute; top: 0; left: 0; right: 0;">
+        <a href="../instructors.html" class="back-link" style="margin-top: 1rem; color: #fff; text-shadow: 1px 1px 3px #000; position: relative; z-index: 10;">&larr; Back to Instructors</a>
+      </div>
       <div class="container">
-        <a href="../instructors.html" class="back-link">&larr; Back to Instructors</a>
-        <div class="profile-banner"><img src="${bannerSrc}" alt="${escapeHtml(i.name)}"></div>
         <div class="profile-under">
           <img class="profile-photo" src="../${escapeHtml(i.photo)}" alt="${escapeHtml(i.name)}" onerror="this.src='../assets/images/placeholder.svg'">
           <div class="profile-head">
@@ -100,7 +106,7 @@ function buildProfileHtml(i) {
             <span class="tag">${escapeHtml(i.specialization)}</span>
           </div>
         </div>
-        <div class="profile-bio">${escapeHtml(i.bio || '')}</div>
+        <div class="profile-bio">${(i.bio || '').split('\n\n').filter(p => p.trim()).map(p => `<p>${escapeHtml(p.trim())}</p>`).join('\n')}</div>
         ${socialHtml.length > 0 ? '<div class="profile-social">' + socialHtml.join('') + '</div>' : ''}
       </div>
     </section>

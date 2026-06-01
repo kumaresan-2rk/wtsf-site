@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,12 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="assets/images/favicon.svg">
 </head>
+
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="logo">
         <img src="assets/uploads/logo/22434.png" alt="WTSF Logo">
-        <span>WTSF</span>
       </a>
       <button class="nav-toggle" id="navToggle" aria-label="Menu">&#9776;</button>
       <nav class="nav" id="nav">
@@ -35,7 +36,8 @@
       <div class="container">
         <div class="section-title">
           <h2>Gallery</h2>
-          <p style="color:var(--text-secondary);margin-top:0.5rem;">Photos from our events, training sessions, and federation activities</p>
+          <p style="color:var(--text-secondary);margin-top:0.5rem;">Photos from our events, training sessions, and
+            federation activities</p>
         </div>
         <div class="card-grid card-grid-3" id="galleryGrid"></div>
       </div>
@@ -44,7 +46,9 @@
 
   <div class="modal-overlay" id="modalOverlay" onclick="this.classList.remove('open');document.body.style.overflow=''">
     <div class="modal-content" style="text-align:center;background:transparent;box-shadow:none;max-width:90vw;">
-      <button class="modal-close" onclick="document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow=''" style="color:#fff;font-size:2rem;">&times;</button>
+      <button class="modal-close"
+        onclick="document.getElementById('modalOverlay').classList.remove('open');document.body.style.overflow=''"
+        style="color:#fff;font-size:2rem;">&times;</button>
       <img id="modalImg" src="" alt="" style="max-height:80vh;width:auto;margin:0 auto;border-radius:var(--radius);">
     </div>
   </div>
@@ -87,26 +91,27 @@
     }
 
     fetch('data/images.json')
-      .then(function(r) { return r.json(); })
-      .then(function(items) {
+      .then(function (r) { return r.json(); })
+      .then(function (items) {
         var grid = document.getElementById('galleryGrid');
-        var galleryItems = items.filter(function(item) { return item.linkedToGallery; });
+        var galleryItems = items.filter(function (item) { return item.linkedToGallery; });
         if (galleryItems.length === 0) {
           grid.innerHTML = '<p style="color:var(--text-secondary)">No images in gallery yet.</p>';
           return;
         }
-        grid.innerHTML = galleryItems.map(function(item) {
+        grid.innerHTML = galleryItems.map(function (item) {
           var src = item.path || item.src || item.filename;
           var caption = item.caption || '';
           return '<div class="card" style="cursor:pointer;" onclick="openGallery(\'' + src + '\')">' +
             '<img class="card-image" src="' + src + '" alt="' + caption + '" loading="lazy" style="aspect-ratio:4/3;">' +
             (caption ? '<div class="card-body" style="padding:8px;text-align:center;"><div class="card-text" style="color:var(--text-secondary);font-size:0.85rem;">' + caption + '</div></div>' : '') +
-          '</div>';
+            '</div>';
         }).join('');
       })
-      .catch(function() {
+      .catch(function () {
         document.getElementById('galleryGrid').innerHTML = '<p style="color:var(--text-secondary)">Gallery images loading&hellip;</p>';
       });
   </script>
 </body>
+
 </html>
