@@ -22,6 +22,7 @@
           <div class="blog-card-category">${p.category}</div>
           <div class="card-title">${p.title}</div>
           <div class="card-text" style="margin-top:0.5rem;">${p.excerpt}</div>
+          ${p.externalUrl ? '<span style="font-size:0.8rem;color:var(--accent);margin-top:0.5rem;display:inline-block;">Read on external site &rarr;</span>' : ''}
         </div>
       </div>
     `).join('');
@@ -40,12 +41,17 @@
       ? post.images.map(img => `<img src="${img}" alt="${post.title}" loading="lazy">`).join('')
       : '';
 
+    const externalHtml = post.externalUrl
+      ? '<p style="margin-top:1.5rem;"><a href="' + post.externalUrl + '" target="_blank" rel="noopener" style="color:var(--accent);">Read more on external site &rarr;</a></p>'
+      : '';
+
     body.innerHTML = `
       <button class="modal-close" onclick="closeBlogPost()">&times;</button>
       <img src="${post.coverImage}" alt="${post.title}" style="width:100%;border-radius:var(--radius);margin-bottom:1rem;">
       <h2>${post.title}</h2>
       <div class="meta">${formatDate(post.date)} &middot; ${post.category}</div>
       <div style="color:var(--text-secondary);line-height:1.8;white-space:pre-line;">${post.content}</div>
+      ${externalHtml}
       ${imagesHtml}
     `;
 
