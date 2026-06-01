@@ -1,0 +1,27 @@
+{
+  "title": "Classes",
+  "subtitle": "Training programs and class schedules",
+  "intro": "WTSF offers structured training programs in Silambattam for practitioners of all levels. Our classes are conducted by certified instructors at affiliated training centers across Tamil Nadu.",
+  "cta": "For class schedules and enrollment, contact us or reach out to your nearest WTSF instructor.",
+  "ctaLink": "contacts.html",
+  "levels": [
+    {
+      "title": "Beginner",
+      "color": "var(--accent)",
+      "description": "Introduction to Silambattam: basic stances, footwork, and fundamental stick techniques. No prior experience required.",
+      "prerequisite": null
+    },
+    {
+      "title": "Intermediate",
+      "color": "var(--accent)",
+      "description": "Advanced techniques, forms (kata), and introduction to weapons training. Prerequisite: Beginner certification.",
+      "prerequisite": "Beginner certification"
+    },
+    {
+      "title": "Advanced",
+      "color": "var(--accent)",
+      "description": "Master-level training: advanced weapons, teaching methodology, and instructor certification.",
+      "prerequisite": null
+    }
+  ]
+}

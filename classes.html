@@ -32,30 +32,12 @@
 
   <main class="page-content">
     <section class="section">
-      <div class="container">
+      <div class="container" id="classesContent">
         <div class="section-title">
-          <h2>Classes</h2>
-          <p style="color:var(--text-secondary);margin-top:0.5rem;">Training programs and class schedules</p>
+          <h2 id="classesTitle">Classes</h2>
+          <p id="classesSubtitle" style="color:var(--text-secondary);margin-top:0.5rem;">Training programs and class schedules</p>
         </div>
-        <div style="max-width:800px;margin:0 auto;color:var(--text-secondary);">
-          <p>WTSF offers structured training programs in Silambattam for practitioners of all levels. Our classes are conducted by certified instructors at affiliated training centers across Tamil Nadu.</p>
-
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin:2rem 0;">
-            <div style="background:var(--bg-surface);padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">
-              <h4 style="color:var(--accent);margin-bottom:0.75rem;">Beginner</h4>
-              <p style="font-size:0.9rem;">Introduction to Silambattam: basic stances, footwork, and fundamental stick techniques. No prior experience required.</p>
-            </div>
-            <div style="background:var(--bg-surface);padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">
-              <h4 style="color:var(--accent);margin-bottom:0.75rem;">Intermediate</h4>
-              <p style="font-size:0.9rem;">Advanced techniques, forms (kata), and introduction to weapons training. Prerequisite: Beginner certification.</p>
-            </div>
-            <div style="background:var(--bg-surface);padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">
-              <h4 style="color:var(--accent);margin-bottom:0.75rem;">Advanced</h4>
-              <p style="font-size:0.9rem;">Master-level training: advanced weapons, teaching methodology, and instructor certification.</p>
-            </div>
-          </div>
-
-          <p style="text-align:center;">For class schedules and enrollment, <a href="contacts.html">contact us</a> or reach out to your nearest WTSF instructor.</p>
+        <div id="classesBody" style="max-width:800px;margin:0 auto;color:var(--text-secondary);">
         </div>
       </div>
     </section>
@@ -91,5 +73,43 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script>
+    fetch('data/classes.json')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.title) document.getElementById('classesTitle').textContent = data.title;
+        if (data.subtitle) document.getElementById('classesSubtitle').textContent = data.subtitle;
+
+        var body = document.getElementById('classesBody');
+        var html = '';
+
+        if (data.intro) html += '<p>' + data.intro + '</p>';
+
+        if (data.levels && data.levels.length > 0) {
+          html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin:2rem 0;">';
+          data.levels.forEach(function(l) {
+            html += '<div style="background:var(--bg-surface);padding:1.5rem;border-radius:var(--radius-lg);border:1px solid var(--border);">' +
+              '<h4 style="color:' + (l.color || 'var(--accent)') + ';margin-bottom:0.75rem;">' + l.title + '</h4>' +
+              '<p style="font-size:0.9rem;">' + l.description + '</p>' +
+              (l.prerequisite ? '<p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.5rem;">Prerequisite: ' + l.prerequisite + '</p>' : '') +
+            '</div>';
+          });
+          html += '</div>';
+        }
+
+        if (data.cta) {
+          var cta = data.cta;
+          if (data.ctaLink) {
+            cta = cta.replace('contact us', '<a href="' + data.ctaLink + '">contact us</a>');
+          }
+          html += '<p style="text-align:center;">' + cta + '</p>';
+        }
+
+        body.innerHTML = html;
+      })
+      .catch(function() {
+        document.getElementById('classesContent').style.display = 'none';
+      });
+  </script>
 </body>
 </html>

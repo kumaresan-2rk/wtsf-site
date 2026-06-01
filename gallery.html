@@ -86,13 +86,18 @@
       document.body.style.overflow = 'hidden';
     }
 
-    fetch('data/gallery.json')
+    fetch('data/images.json')
       .then(function(r) { return r.json(); })
       .then(function(items) {
         var grid = document.getElementById('galleryGrid');
-        grid.innerHTML = items.map(function(item) {
-          var src = typeof item === 'string' ? item : item.src;
-          var caption = typeof item === 'object' && item.caption ? item.caption : '';
+        var galleryItems = items.filter(function(item) { return item.linkedToGallery; });
+        if (galleryItems.length === 0) {
+          grid.innerHTML = '<p style="color:var(--text-secondary)">No images in gallery yet.</p>';
+          return;
+        }
+        grid.innerHTML = galleryItems.map(function(item) {
+          var src = item.path || item.src || item.filename;
+          var caption = item.caption || '';
           return '<div class="card" style="cursor:pointer;" onclick="openGallery(\'' + src + '\')">' +
             '<img class="card-image" src="' + src + '" alt="' + caption + '" loading="lazy" style="aspect-ratio:4/3;">' +
             (caption ? '<div class="card-body" style="padding:8px;text-align:center;"><div class="card-text" style="color:var(--text-secondary);font-size:0.85rem;">' + caption + '</div></div>' : '') +
