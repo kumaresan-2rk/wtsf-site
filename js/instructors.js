@@ -2,16 +2,37 @@
   let instructors = [];
   let currentView = 'gallery';
 
+  const STATE_ORDER = [
+    'Tamil Nadu',
+    'Karnataka',
+    'Andhra Pradesh',
+    'Maharashtra',
+    'Gujarat',
+    'Odisha',
+    'Uttar Pradesh'
+  ];
+
   function getUniqueStates(data) {
-    return [...new Set(data.map(i => i.state))].sort();
+    const states = [...new Set(data.map(i => i.state))];
+    return states.sort((a, b) => {
+      const ai = STATE_ORDER.indexOf(a);
+      const bi = STATE_ORDER.indexOf(b);
+      return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+    });
   }
 
   function getDistrictsByState(data, state) {
     return [...new Set(data.filter(i => i.state === state).map(i => i.district))].sort();
   }
 
+  let activeState = null;
+
+  function getSelectedState() {
+    return activeState;
+  }
+
   function hasActiveFilters() {
-    const state = document.getElementById('filterState').value;
+    const state = getSelectedState();
     const district = document.getElementById('filterDistrict').value;
     const search = document.getElementById('filterSearch').value.trim();
     return state || district || search;
@@ -43,7 +64,7 @@
     return `<a href="instructors/${i.id}.html" class="carousel-card">
       <img src="${i.photo}" alt="${i.name}" loading="lazy" onerror="this.src='assets/images/placeholder.svg'">
       <div class="card-title">${i.name}</div>
-      <div style="color:var(--text-secondary);font-size:0.85rem;margin-top:0.25rem;">${i.district}</div>
+      <div style="color:var(--text-secondary);font-size:0.85rem;margin-top:0.25rem;">${i.district}, ${i.state}</div>
       <div style="color:var(--accent);font-size:0.8rem;margin-top:0.5rem;">${i.specialization}</div>
     </a>`;
   }
@@ -85,12 +106,7 @@
       container.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:2rem;">No instructors found matching your criteria.</p>';
       return;
     }
-
-    if (hasActiveFilters()) {
-      container.innerHTML = renderFlat(data, buildCardHtml, 'card-grid card-grid-3');
-    } else {
-      container.innerHTML = renderGrouped(data, buildCardHtml, 'card-grid card-grid-3');
-    }
+    container.innerHTML = renderFlat(data, buildCardHtml, 'card-grid card-grid-4');
   }
 
   function renderListView(data) {
@@ -100,12 +116,7 @@
       container.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:2rem;">No instructors found matching your criteria.</p>';
       return;
     }
-
-    if (hasActiveFilters()) {
-      container.innerHTML = renderFlat(data, buildListItemHtml, 'instructor-list');
-    } else {
-      container.innerHTML = renderGrouped(data, buildListItemHtml, 'instructor-list');
-    }
+    container.innerHTML = renderFlat(data, buildListItemHtml, 'instructor-list');
   }
 
   function renderCarouselView(data) {
@@ -115,19 +126,12 @@
       container.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:2rem;">No instructors found matching your criteria.</p>';
       return;
     }
-
     let html = '<div class="carousel-wrapper">';
-    if (data.length > 1 && !hasActiveFilters()) {
+    if (data.length > 1) {
       html += '<button class="carousel-arrow prev" onclick="scrollCarousel(-1)">&#8249;</button>';
       html += '<button class="carousel-arrow next" onclick="scrollCarousel(1)">&#8250;</button>';
     }
-
-    if (hasActiveFilters()) {
-      html += renderFlat(data, buildCarouselCardHtml, 'instructor-carousel');
-    } else {
-      html += renderGrouped(data, buildCarouselCardHtml, 'instructor-carousel');
-    }
-
+    html += renderFlat(data, buildCarouselCardHtml, 'instructor-carousel');
     html += '</div>';
     container.innerHTML = html;
   }
@@ -140,7 +144,7 @@
   };
 
   function filterInstructors() {
-    const stateFilter = document.getElementById('filterState').value;
+    const stateFilter = getSelectedState();
     const districtFilter = document.getElementById('filterDistrict').value;
     const searchQuery = document.getElementById('filterSearch').value.toLowerCase().trim();
 
@@ -176,7 +180,7 @@
   }
 
   function populateDistricts() {
-    const state = document.getElementById('filterState').value;
+    const state = getSelectedState();
     const districtSelect = document.getElementById('filterDistrict');
     const currentDistrict = districtSelect.value;
 
@@ -198,6 +202,30 @@
     });
   }
 
+  function renderStatePills(data) {
+    const container = document.getElementById('statePills');
+    if (!container) return;
+    const states = getUniqueStates(data);
+    container.innerHTML = states.map(function(s) {
+      var active = s === activeState ? ' active' : '';
+      return '<span class="pill' + active + '" data-state="' + s + '">' + s + '</span>';
+    }).join('');
+
+    container.querySelectorAll('.pill').forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        var state = this.dataset.state;
+        if (activeState === state) {
+          activeState = null;
+        } else {
+          activeState = state;
+        }
+        renderStatePills(data);
+        populateDistricts();
+        filterInstructors();
+      });
+    });
+  }
+
   function init() {
     const grid = document.getElementById('instructorGrid');
     if (!grid) return;
@@ -206,14 +234,8 @@
       .then(r => r.json())
       .then(data => {
         instructors = data;
-
-        const stateSelect = document.getElementById('filterState');
-        getUniqueStates(data).forEach(s => {
-          const opt = document.createElement('option');
-          opt.value = s;
-          opt.textContent = s;
-          stateSelect.appendChild(opt);
-        });
+        activeState = null;
+        renderStatePills(data);
 
         document.querySelectorAll('.view-toggle button').forEach(btn => {
           btn.addEventListener('click', function() {
@@ -221,12 +243,8 @@
           });
         });
 
+        populateDistricts();
         renderGalleryView(data);
-
-        stateSelect.addEventListener('change', function() {
-          populateDistricts();
-          filterInstructors();
-        });
 
         document.getElementById('filterDistrict').addEventListener('change', filterInstructors);
         document.getElementById('filterSearch').addEventListener('input', filterInstructors);

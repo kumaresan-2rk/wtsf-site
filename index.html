@@ -76,7 +76,7 @@
         <div class="section-title">
           <h2>Our Instructors</h2>
         </div>
-        <div class="card-grid card-grid-3" id="homeInstructors"></div>
+        <div class="card-grid card-grid-4" id="homeInstructors"></div>
         <div class="text-center mt-2">
           <a href="instructors.html" class="btn">View All Instructors</a>
         </div>
@@ -155,7 +155,7 @@
       .then(data => {
         const container = document.getElementById('homeInstructors');
         if (!container) return;
-        const featured = data.slice(0, 3);
+        const featured = data.slice(0, 4);
         container.innerHTML = featured.map(i => `
           <a href="instructors/${i.id}.html" class="card" style="text-decoration:none;color:inherit;">
             <img class="card-image" src="${i.photo}" alt="${i.name}" loading="lazy" onerror="this.src='assets/images/placeholder.svg'">

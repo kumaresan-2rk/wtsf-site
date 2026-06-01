@@ -4,11 +4,28 @@ const path = require('path');
 const DATA_FILE = path.join(__dirname, 'data', 'instructors.json');
 const OUTPUT_DIR = path.join(__dirname, 'instructors');
 
+const CURRENT_YEAR = new Date().getFullYear();
+const DESIGNATED_THRESHOLD = 100;
+
+function sortInstructors(instructors) {
+  return [...instructors].sort((a, b) => {
+    const aDes = a.sortOrder < DESIGNATED_THRESHOLD;
+    const bDes = b.sortOrder < DESIGNATED_THRESHOLD;
+    if (aDes && bDes) return a.sortOrder - b.sortOrder;
+    if (aDes) return -1;
+    if (bDes) return 1;
+    const expB = CURRENT_YEAR - (b.yearOfJoining || CURRENT_YEAR);
+    const expA = CURRENT_YEAR - (a.yearOfJoining || CURRENT_YEAR);
+    if (expA !== expB) return expB - expA;
+    return a.name.localeCompare(b.name);
+  });
+}
+
 function validateInstructor(i, index) {
   const errors = [];
   if (!i.id) errors.push(`Item ${index}: missing "id"`);
   if (!i.name) errors.push(`Item ${index} (${i.id || 'unknown'}): missing "name"`);
-  if (!i.photo) errors.push(`${i.name}: missing "photo"`);
+  if (!i.photo) errors.push(`${i.name}: missing "photo" (will use placeholder)`);
   if (!i.district) errors.push(`${i.name}: missing "district"`);
   if (!i.state) errors.push(`${i.name}: missing "state"`);
   return errors;
@@ -22,7 +39,12 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
+function calcExperience(i) {
+  return CURRENT_YEAR - (i.yearOfJoining || CURRENT_YEAR);
+}
+
 function buildProfileHtml(i) {
+  const experience = calcExperience(i);
   const socialHtml = [];
   if (i.social && i.social.instagram) {
     socialHtml.push(`<a href="${escapeHtml(i.social.instagram)}" target="_blank" rel="noopener">Instagram</a>`);
@@ -74,7 +96,7 @@ function buildProfileHtml(i) {
             <div class="profile-meta">
               <span class="profile-meta-item"><strong>${escapeHtml(i.district)}</strong>, ${escapeHtml(i.state)}</span>
               <span class="profile-meta-item">${escapeHtml(i.specialization)}</span>
-              <span class="profile-meta-item">${i.experience} years experience</span>
+              <span class="profile-meta-item">${experience} years experience</span>
               ${i.fullId ? `<span class="profile-meta-item">ID: ${escapeHtml(i.fullId)}</span>` : ''}
             </div>
             <div class="profile-bio">${escapeHtml(i.bio || '')}</div>
@@ -158,8 +180,14 @@ function main() {
     process.exit(1);
   }
 
+  const sorted = sortInstructors(instructors);
+
+  const sortedJson = JSON.stringify(sorted, null, 2) + '\n';
+  fs.writeFileSync(DATA_FILE, sortedJson, 'utf-8');
+  console.log(`  Sorted ${sorted.length} instructors and wrote back to data/instructors.json`);
+
   let generated = 0;
-  instructors.forEach(i => {
+  sorted.forEach(i => {
     const html = buildProfileHtml(i);
     const filePath = path.join(OUTPUT_DIR, `${i.id}.html`);
     fs.writeFileSync(filePath, html, 'utf-8');
